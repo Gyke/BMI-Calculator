@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
 
     @IBOutlet weak var weightValueLabel: UILabel!
     @IBOutlet weak var heightValueLabel: UILabel!
@@ -16,9 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightSliderView: UISlider!
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
-        let secondVC = SecondViewController()
-        secondVC.bmiValue = weightSliderView.value / pow(heightSliderView.value, 2)
-        self.present(secondVC, animated: true)
+        self.performSegue(withIdentifier: "goToResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.resultBMI = weightSliderView.value / pow(heightSliderView.value, 2)
+        }
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -31,7 +36,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
 
