@@ -10,17 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var weightValueView: UILabel!
-    @IBOutlet weak var heightValueView: UILabel!
-    
+    @IBOutlet weak var weightValueLabel: UILabel!
+    @IBOutlet weak var heightValueLabel: UILabel!
     @IBOutlet weak var heightSliderView: UISlider!
     @IBOutlet weak var weightSliderView: UISlider!
     
+    @IBAction func calculateButtonPressed(_ sender: UIButton) {
+        print(weightSliderView.value / pow(heightSliderView.value, 2))
+    }
+
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         if sender == heightSliderView {
-            heightValueView.text = String(format: "%.2f", heightSliderView.value) + " m"
+            heightValueLabel.text = String(format: "%.2f", heightSliderView.value) + " m"
         } else {
-            weightValueView.text = String(format: "%.0f", weightSliderView.value) + " Kg"
+            weightValueLabel.text = String(format: "%.0f", weightSliderView.value) + " Kg"
         }
     }
     
