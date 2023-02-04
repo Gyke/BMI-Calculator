@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightSliderView: UISlider!
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
-        print(weightSliderView.value / pow(heightSliderView.value, 2))
+        let secondVC = SecondViewController()
+        secondVC.bmiValue = weightSliderView.value / pow(heightSliderView.value, 2)
+        self.present(secondVC, animated: true)
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
